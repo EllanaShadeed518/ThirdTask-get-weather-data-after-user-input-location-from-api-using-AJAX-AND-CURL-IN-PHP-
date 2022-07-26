@@ -50,12 +50,10 @@ function getLocation() {
 function successFunction(position) {
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
-  console.log(lat);
   var latlong = {"lat" : lat , "long" : long};
   var latlong_encoded = JSON.stringify(latlong);
   x.innerHTML = "Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude;
-  var jsonData;
   $.ajax({
    url: 'weather.php',
    type: 'POST',
@@ -67,9 +65,7 @@ function successFunction(position) {
 
  success: function(data) {
     console.log("yes");
-  console.log(data);
   c=JSON.parse(data);
-  console.log(c);
   console.log(c.data.list[0].weather[0].icon);
  var u = document.getElementById("city_name");
  u.innerHTML=c.data.city.name;
